@@ -1,5 +1,6 @@
 @(issue: gitbucket.core.model.Issue,
   pullreq: gitbucket.core.model.PullRequest,
+  diffs: Seq[gitbucket.core.util.JGitUtil.DiffInfo],
   commits: Seq[gitbucket.core.util.JGitUtil.CommitInfo],
   comments: Seq[gitbucket.core.model.Comment],
   issueLabels: List[gitbucket.core.model.Label],
@@ -14,7 +15,7 @@
   forkedRepository: Option[gitbucket.core.service.RepositoryService.RepositoryInfo],
   flash: Map[String, String])(implicit context: gitbucket.core.controller.Context)
 @import gitbucket.core.view.helpers
-@gitbucket.core.pulls.html.menu("conversation", issue, pullreq, commits, comments, isManageable, repository, flash){
+@gitbucket.core.pulls.html.menu("conversation", issue, pullreq, diffs, commits, comments, isManageable, repository, flash){
   <link href="@helpers.assets("/vendors/jsdifflib/diffview.css")" type="text/css" rel="stylesheet" />
   <div class="col-md-9">
     <div id="comment-list">

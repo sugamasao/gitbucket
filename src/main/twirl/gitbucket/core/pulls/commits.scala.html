@@ -1,11 +1,12 @@
 @(issue: gitbucket.core.model.Issue,
   pullreq: gitbucket.core.model.PullRequest,
+  diffs: Seq[gitbucket.core.util.JGitUtil.DiffInfo],
   commits: Seq[Seq[gitbucket.core.util.JGitUtil.CommitInfo]],
   comments: Seq[gitbucket.core.model.Comment],
   isManageable: Boolean,
   repository: gitbucket.core.service.RepositoryService.RepositoryInfo)(implicit context: gitbucket.core.controller.Context)
 @import gitbucket.core.view.helpers
-@gitbucket.core.pulls.html.menu("commits", issue, pullreq, commits.flatten, comments, isManageable, repository){
+@gitbucket.core.pulls.html.menu("commits", issue, pullreq, diffs, commits.flatten, comments, isManageable, repository){
   <table class="table table-bordered">
   @commits.map { day =>
     <tr>
